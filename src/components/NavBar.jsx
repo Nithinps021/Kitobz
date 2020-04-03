@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 //material ui imports
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,10 +12,12 @@ export class NavBar extends Component {
         return (
             <div>
                 <AppBar>
-                    <Toolbar>
+                    <Toolbar className ="nav-container">
                         <Button color ="inherit">Login</Button>
                         <Button color ="inherit">SignUp</Button>
-                        <Button color ="inherit">Home</Button>
+                        <Button color ="inherit">home</Button>
+                        <Button color ="inherit">LogOut</Button>
+
                     </Toolbar>
                 </AppBar>
             </div>

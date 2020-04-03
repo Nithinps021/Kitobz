@@ -1,16 +1,14 @@
-.App {
-  text-align: center;
+
+.nav-container{
+  align-self: flex-end;
+}
+.home-grid-container{
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  
 }
 
 .App-header {

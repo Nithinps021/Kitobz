@@ -1,6 +1,6 @@
 import React from 'react';
-import {Route ,Switch,BrowserRouter as Router} from 'react-router-dom'
-
+import {Route ,Switch,BrowserRouter as Router} from 'react-router-dom';
+import './App.css';
 //pages
 import Signup from './pages/signup.jsx';
 import Login from './pages/login.jsx';
