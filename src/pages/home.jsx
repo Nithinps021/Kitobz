@@ -56,12 +56,11 @@ class home extends Component {
   }
 
   render() {
-    // let books = this.state.allbooks ? (
-    //   this.state.allbooks.map(ele => <BookCard bookinfo={ele} />)
-    // ) : (
-    //   <p>Loding</p>
-    // );
-    let books = this.state.Allbooks.map(ele =><BookCard bookinfo={ele} />)
+    let books = this.state.allbooks ? (
+      this.state.allbooks.map(ele => <BookCard bookinfo={ele} />)
+    ) : (
+      <p>Loding</p>
+    );
 
     return (
       <div>
