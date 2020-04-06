@@ -4,10 +4,11 @@ import axios from "axios";
 import NavBar from "../components/NavBar.jsx";
 import "../css/home.css";
 import BookCard from "../components/BookCard";
-
+// materila ui
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import Grid from "@material-ui/core/Grid";
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const Theme = createMuiTheme({
   palette: {
@@ -27,18 +28,8 @@ const Theme = createMuiTheme({
 
 class home extends Component {
   state = {
-    Allbooks:[
-      {
-        bookId:1323,
-        bookname:"Linear Equation and Probability",
-        branch:"CSE",
-        forsem:"S4",
-        imgURL:" https://firebasestorage.googleapis.com/v0/b/fir-fbb84.appspot.com/o/995801706070.jpeg?alt=media",
-        price:200,
-        status:"Available"
-      }
-    ],
     allbooks:null,
+    loading:true
   };
 
   componentDidMount() {
@@ -56,16 +47,22 @@ class home extends Component {
   }
 
   render() {
-    let books = this.state.allbooks ? (
-      this.state.allbooks.map(ele => <BookCard bookinfo={ele} />)
-    ) : (
-      <p>Loding</p>
-    );
-
+    var books;
+    let {loading} = this.state.loading;
+    if(this.state.allbooks){
+      books = this.state.allbooks.map(ele => <BookCard key = {ele.bookId} bookinfo={ele} />);
+      loading=false;
+    }
+    else{
+      loading=true
+    }
     return (
       <div>
         <MuiThemeProvider theme={Theme}>
           <NavBar></NavBar>
+          <div style={{ marginTop: "9vh"}}>
+            {loading && <LinearProgress color='secondary'/>}
+          </div>
           <div style={{ marginTop: "15vh", padding: "3vw" }}>
             <Grid
               container
