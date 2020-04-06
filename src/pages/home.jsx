@@ -60,7 +60,7 @@ class home extends Component {
       <div>
         <MuiThemeProvider theme={Theme}>
           <NavBar></NavBar>
-          <div style={{ marginTop: "9vh"}}>
+          <div style={{ marginTop:65}}>
             {loading && <LinearProgress color='secondary'/>}
           </div>
           <div style={{ marginTop: "15vh", padding: "3vw" }}>
