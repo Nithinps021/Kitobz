@@ -8,13 +8,14 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
+
 const style = {
   card: {
     display: "flex"
   },
   image: {
-      height:200,
-      objectFit:"cover"
+      height:250,
+      objectFit: 'cover',
 
   },
 };
@@ -25,24 +26,22 @@ class BookCard extends Component {
     const {
       bookId,
       bookname,
-      branch,
-      forsem,
       imgURL,
       price,
       status
     } = bookinfo;
     return (
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Card id={bookId}>
+      <Grid item xs={6} sm={4} md={3} lg={2}>
+        <Card >
           <CardMedia image={imgURL} title="Book Image" className={classes.image}/>
           <CardContent>
-          <Typography variant="h5">{bookname}</Typography>
+          <Typography variant="h6">{bookname}</Typography>
             <Grid container direction='row' spacing={1}>
                 <Grid item xs={12} >
                 <Typography variant="h5" >₹  {price}</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                <Typography varient="body1">Status {status}</Typography>
+                <Typography varient="body1">{status}</Typography>
                 </Grid>
             </Grid>
           </CardContent>
