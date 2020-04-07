@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -13,7 +12,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 // redux imports
 import { connect } from "react-redux";
-import { loginUser } from "../Redux/actions/userActons";
+import { loginUser } from "../Redux/actions/userActions";
 
 const styles = {
   form: {
@@ -73,13 +72,13 @@ class login extends Component {
   render() {
     const {
       classes,
-      ui: { loading },
+      ui: { loading},
     } = this.props;
     const { errors } = this.state;
     console.log(errors);
     return (
       <div>
-        <Grid container className={classes.form} spacing={4}>
+        <Grid container className={classes.form} >
           <Grid item sm></Grid>
           <Grid item sm>
             <Typography variant="h3" className={classes.heading}>
