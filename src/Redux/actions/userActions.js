@@ -1,4 +1,4 @@
-import {SET_ERRORS,LOADING_UI,CLEAR_ERRORS,SET_UNAUTHENTICATED} from '../type'
+import {SET_ERRORS,LOADING_UI,CLEAR_ERRORS,SET_UNAUTHENTICATED,SET_AUTHENTICATED} from '../type'
 import axios from 'axios'
 
 export const loginUser = (loginDetails, history) => (dispach) =>{
@@ -9,9 +9,11 @@ export const loginUser = (loginDetails, history) => (dispach) =>{
         const FBIdToken = `Bearer ${res.data.token}`
         localStorage.setItem('FBToken',FBIdToken);
         axios.defaults.headers.common['Authorization']=FBIdToken;
+        dispach({type:SET_AUTHENTICATED});
         // dispach(getUserData())
         dispach({type:CLEAR_ERRORS})
         history.push("/");
+        
       })
       .catch((error) => {
           dispach({
@@ -44,6 +46,7 @@ export const signupUser = (signDetails, history) => (dispach) =>{
       const FBIdToken = `Bearer ${res.data.token}`
       localStorage.setItem('FBToken',FBIdToken);
       axios.defaults.headers.common['Authorization']=FBIdToken;
+      dispach({type:SET_AUTHENTICATED});
       // dispach(getUserData())
       dispach({type:CLEAR_ERRORS})
       history.push("/");
