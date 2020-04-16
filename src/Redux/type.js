@@ -10,6 +10,10 @@ export const SET_ERRORS ='SET_ERRORS'
 export const LOADING_UI ='LOADING_UI'
 export const CLEAR_ERRORS ='CLEAR_ERRORS'
 
+// DATA REDUCER
+export const ADD_BOOK ='ADD_BOOK'
+export const BOOK_ERROR='BOOK_ERROR'
+export const ADD_IMG='ADD_IMG'
 
 
 

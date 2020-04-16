@@ -1,4 +1,4 @@
-import {SET_ERRORS,LOADING_UI,CLEAR_ERRORS,SET_UNAUTHENTICATED,SET_AUTHENTICATED} from '../type'
+import {SET_ERRORS,LOADING_UI,CLEAR_ERRORS,SET_UNAUTHENTICATED,SET_AUTHENTICATED,SET_USER} from '../type'
 import axios from 'axios'
 
 export const loginUser = (loginDetails, history) => (dispach) =>{
@@ -10,7 +10,7 @@ export const loginUser = (loginDetails, history) => (dispach) =>{
         localStorage.setItem('FBToken',FBIdToken);
         axios.defaults.headers.common['Authorization']=FBIdToken;
         dispach({type:SET_AUTHENTICATED});
-        // dispach(getUserData())
+        dispach(getUserData())
         dispach({type:CLEAR_ERRORS})
         history.push("/");
         
@@ -24,18 +24,18 @@ export const loginUser = (loginDetails, history) => (dispach) =>{
       });
 }
 
-// export const getUserData = () => (dispatch)=>{
-//         axios.get('/user')
-//             .then(res =>{
-//                 dispatch({
-//                    type:SET_USER,
-//                    payload:res.data 
-//                 })
-//             })
-//             .catch(err =>{
-//                 console.log(err);
-//             })
-// }
+export const getUserData = () => (dispatch)=>{
+        axios.get('/userinfo')
+            .then(res =>{
+                dispatch({
+                   type:SET_USER,
+                   payload:res.data 
+                })
+            })
+            .catch(err =>{
+                console.log(err);
+            })
+}
 
 export const signupUser = (signDetails, history) => (dispach) =>{
   dispach({type:LOADING_UI})
@@ -47,7 +47,7 @@ export const signupUser = (signDetails, history) => (dispach) =>{
       localStorage.setItem('FBToken',FBIdToken);
       axios.defaults.headers.common['Authorization']=FBIdToken;
       dispach({type:SET_AUTHENTICATED});
-      // dispach(getUserData())
+      dispach(getUserData())
       dispach({type:CLEAR_ERRORS})
       history.push("/");
     })
