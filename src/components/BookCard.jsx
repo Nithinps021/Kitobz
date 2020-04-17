@@ -7,48 +7,54 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-
+import Paper from "@material-ui/core/Paper";
 
 const style = {
   card: {
-    display: "flex"
+    height: 340,
   },
   image: {
-      height:250,
-      objectFit: 'cover',
-
+    height: 220,
+    objectFit: "cover",
+  },
+  status: {
+    textAlign: "end",
   },
 };
 
 class BookCard extends Component {
   render() {
     const { classes, bookinfo } = this.props;
-    const {
-      bookId,
-      bookname,
-      imgURL,
-      price,
-      status
-    } = bookinfo;
+    const { bookId, bookname, imgURL, price, status } = bookinfo;
     return (
       <Grid item xs={6} sm={4} md={3} lg={2}>
-        <Card >
-          <CardMedia image={imgURL} title="Book Image" className={classes.image}/>
-          <CardContent>
-          <Typography variant="h6">{bookname}</Typography>
-            <Grid container direction='row' spacing={1}>
-                <Grid item xs={12} >
-                <Typography variant="h5" >₹  {price}</Typography>
+        <Paper elevation={4}>
+          <Card id={bookId} className={classes.card}>
+            <CardMedia
+              image={imgURL}
+              title="Book Image"
+              className={classes.image}
+            />
+            <CardContent>
+              <Grid container direction="row">
+                <Grid item xs={12}>
+                  <Typography variant="h7">{bookname}</Typography>
                 </Grid>
-                <Grid item xs={6}>
-                <Typography varient="body1">{status}</Typography>
+                <Grid item xs={12} className={classes.status}>
+                  <Typography variant="h6">₹ {price}</Typography>
                 </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
+                <Grid item xs={12}>
+                  <Typography varient="body1" className={classes.status}>
+                    {status}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        </Paper>
       </Grid>
     );
   }
 }
 
-export default withStyles (style)(BookCard);
+export default withStyles(style)(BookCard);

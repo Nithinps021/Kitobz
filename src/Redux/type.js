@@ -14,6 +14,7 @@ export const CLEAR_ERRORS ='CLEAR_ERRORS'
 export const ADD_BOOK ='ADD_BOOK'
 export const BOOK_ERROR='BOOK_ERROR'
 export const ADD_IMG='ADD_IMG'
+export const ADDING="ADDING"
 
 
 

@@ -17,6 +17,61 @@ import Home from './pages/home.jsx';
 import AuthRoute from './util/AuthRoute.jsx'
 import HomeRoute from './util/homeRoute.jsx'
 
+// MUI imports
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+
+
+const Theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#323232",
+      contrastText: "#fff"
+    },
+    secondary: {
+      main: "#ff1e56",
+      contrastText: "#fff"
+    }
+  },
+  typography: {
+    useNextVarients: true
+  },
+  form: {
+    // textAlign: "center",
+    padding: 20,
+  },
+  heading: {
+    marginTop: "5vh",
+    textAlign: "center",
+  },
+  textField: {
+    marginTop: 0,
+    color: "white",
+  },
+  buttonStyle: {
+    marginTop: "4vh",
+    marginBottom: "2vh",
+    position: "relative",
+  },
+  errorText: {
+    color: "red",
+    fontSize: "1rem",
+    marginTop: 10,
+  },
+  progress: {
+    position: "absolute",
+  },
+  label: {
+    marginTop: 7,
+  },
+  selector: {
+    minWidth: 150,
+  },
+  ref: {
+    textAlign: "center",
+  },
+});
+
 
 const token = localStorage.FBToken
 if(token){
@@ -28,7 +83,7 @@ if(token){
   }
   else{
     store.dispatch({type:SET_AUTHENTICATED});
-    axios.defaults.headers.common['Authenticated']=token;
+    axios.defaults.headers.common['Authorization']=token;
   }  
 }
 function App() {
@@ -37,9 +92,11 @@ function App() {
       <Provider store ={store}>
         <Router>
           <Switch>
-            <AuthRoute exact path="/login" component ={Login}></AuthRoute>
-            <AuthRoute exact path="/signup" component ={Signup}></AuthRoute>
-            <HomeRoute exact path="/" component ={Home}></HomeRoute>
+            <MuiThemeProvider theme={Theme}>
+              <AuthRoute exact path="/login" component ={Login}></AuthRoute>
+              <AuthRoute exact path="/signup" component ={Signup}></AuthRoute>
+              <HomeRoute exact path="/" component ={Home}></HomeRoute>
+            </MuiThemeProvider>
           </Switch>
         </Router>
       </Provider>

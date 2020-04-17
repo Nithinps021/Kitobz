@@ -13,7 +13,6 @@ export const loginUser = (loginDetails, history) => (dispach) =>{
         dispach(getUserData())
         dispach({type:CLEAR_ERRORS})
         history.push("/");
-        
       })
       .catch((error) => {
           dispach({
@@ -62,6 +61,11 @@ export const signupUser = (signDetails, history) => (dispach) =>{
 
 export const logoutUser = () => (dispach) =>{
   localStorage.removeItem('FBToken');
+  localStorage.removeItem('username');
+  localStorage.removeItem('branch');
+  localStorage.removeItem('sem');
+  localStorage.removeItem('phoenNo');
+  localStorage.removeItem('userId');
   delete axios.defaults.headers.common['Authorization']
   dispach({type:SET_UNAUTHENTICATED})
 }

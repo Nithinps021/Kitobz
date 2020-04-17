@@ -1,10 +1,11 @@
-import {ADD_BOOK,BOOK_ERROR,ADD_IMG} from '../type'
+import {ADD_BOOK,BOOK_ERROR,ADD_IMG,ADDING} from '../type'
 
 const initaialState={
-    addded:false,
+    added:false,
     status:null,
     error:null,
-    imgURL:''
+    imgURL:null,
+    loading:false,
 }
 export default function(state = initaialState , action){
     switch (action.type) {
@@ -14,6 +15,7 @@ export default function(state = initaialState , action){
           added: true,
           status: action.payload,
           error: null,
+          loading:false,
         };
       case BOOK_ERROR: {
         return {
@@ -23,10 +25,17 @@ export default function(state = initaialState , action){
           error: action.payload,
         };
       }
+      case ADDING:{
+        return({
+          ...state,
+          loading:true,
+        })
+      }
       case ADD_IMG: {
         return {
           ...state,
           imgURL: action.payload,
+          loading:false,
         };
       }
       default:

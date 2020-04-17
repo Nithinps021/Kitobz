@@ -4,29 +4,32 @@ import axios from "axios";
 import NavBar from "../components/NavBar.jsx";
 import "../css/home.css";
 import BookCard from "../components/BookCard";
-// materila ui
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+
+// materila ui imports
+// import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+// import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import Grid from "@material-ui/core/Grid";
 import LinearProgress from '@material-ui/core/LinearProgress';
 
+// redux imports
+import { connect } from "react-redux";
+import { getUserData } from "../Redux/actions/userActions";
 
-
-const Theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#323232",
-      contrastText: "#fff"
-    },
-    secondary: {
-      main: "#ff1e56",
-      contrastText: "#fff"
-    }
-  },
-  typography: {
-    useNextVarients: true
-  }
-});
+// const Theme = createMuiTheme({
+//   palette: {
+//     primary: {
+//       main: "#323232",
+//       contrastText: "#fff"
+//     },
+//     secondary: {
+//       main: "#ff1e56",
+//       contrastText: "#fff"
+//     }
+//   },
+//   typography: {
+//     useNextVarients: true
+//   }
+// });
 
 class home extends Component {
   state = {
@@ -46,6 +49,7 @@ class home extends Component {
       .catch(error => {
         console.log(error);
       });
+      this.props.getUserData();
   }
 
   render() {
@@ -60,7 +64,7 @@ class home extends Component {
     }
     return (
       <div>
-        <MuiThemeProvider theme={Theme}>
+        {/* <MuiThemeProvider theme={Theme}> */}
           <NavBar></NavBar>
           <div style={{ marginTop:65}}>
             {loading && <LinearProgress color='secondary'/>}
@@ -75,9 +79,14 @@ class home extends Component {
                 {books}
             </Grid>
           </div>
-        </MuiThemeProvider>
+        {/* </MuiThemeProvider> */}
       </div>
     );
   }
 }
-export default home;
+const mapStateToProps= (state)=>{
+
+}
+const mapActionToProps={getUserData}
+
+export default connect(mapStateToProps,mapActionToProps)(home);
