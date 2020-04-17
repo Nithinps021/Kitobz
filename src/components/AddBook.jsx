@@ -11,12 +11,43 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 // Redux imports
-import { addBook } from "../Redux/actions/dataActions";
+import { addBook, addimg } from "../Redux/actions/dataActions";
 import { connect } from "react-redux";
 
-const style = {};
+const style = {
+  form: {
+    textAlign: "center",
+  },
+  textField: {
+    marginTop: 0,
+    color: "white",
+  },
+  buttonStyle: {
+    marginTop: "2vh",
+    marginBottom: "2vh",
+  },
+  text: {
+   color:"#00000"
+  },
+  label: {
+    marginTop: 7,
+  },
+  selector: {
+    minWidth: 150,
+  },
+  action: {
+    alignSelf: "center",
+  },
+};
 
 class AddBook extends Component {
   constructor(props) {
@@ -28,9 +59,13 @@ class AddBook extends Component {
       branch: "",
       phoneNo: this.props.user.userDetails.phoneNo,
       status: "Available",
-      imgURL: this.props.bookstatus.imgURL,
       open: false,
     };
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      phoneNo: nextProps.user.userDetails.phoneNo,
+    });
   }
   handleOpen = () => {
     this.setState({
@@ -42,8 +77,42 @@ class AddBook extends Component {
       open: false,
     });
   };
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+  handleSubmit = () => {
+    const bookData = {
+      bookname: this.state.bookname,
+      branch: this.state.branch,
+      whichsem: this.state.forsem,
+      status: this.state.status,
+      price: this.state.price,
+      phoneNo: this.props.user.userDetails.phoneNo,
+      imgURL:
+        this.props.bookstatus.imgURL ||
+        "https://firebasestorage.googleapis.com/v0/b/fir-fbb84.appspot.com/o/book.jpg?alt=media",
+    };
+    console.log(bookData);
+    this.props.addBook(bookData);
+  };
+  handleImageChange = (event) => {
+    const image = event.target.files[0];
+    const formDate = new FormData();
+    formDate.append("image", image, image.name);
+    this.props.addimg(formDate);
+    this.setState({
+      imgURL: this.props.bookstatus.imgURL,
+    });
+    console.log(this.state);
+  };
   render() {
-    const { classes } = this.props;
+    const {
+      classes,
+      bookstatus: { imgURL, added, loading },
+    } = this.props;
+
     return (
       <Fragment>
         <Tooltip title="Add Book" placement="top">
@@ -51,26 +120,41 @@ class AddBook extends Component {
             <AddIcon color="secondary"></AddIcon>
           </IconButton>
         </Tooltip>
+        {added && (
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            maxWidth="sm"
+          >
+            <DialogContent>
+              <DialogContentText className={classes.text}>
+                <Typography variant="h7" >
+                  The Book has been successfully Added.
+                </Typography>
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions className={classes.action}>
+              <Button
+                onClick={this.handleClose}
+                color="secondary"
+                variant="contained"
+              >
+                OK
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           fullWidth
           maxWidth="sm"
         >
-          <DialogTitle>Add Book Details</DialogTitle>
+          {loading && <LinearProgress color="secondary" />}
+          <DialogTitle className={classes.form}>Add Book Details</DialogTitle>
           <DialogContent>
             <form>
-              {/* <TextField
-                name="bookname"
-                type="text"
-                label="Book Name"
-                multiline
-                rows="3"
-                className={classes.textField}
-                value={this.state.bookname}
-                fullWidth
-              ></TextField> */}
-               <Grid container spacing={2}>
+              <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
                     type="text"
@@ -80,6 +164,7 @@ class AddBook extends Component {
                     value={this.state.bookname}
                     onChange={this.handleChange}
                     color="secondary"
+                    placeholder="Use short Names"
                     fullWidth
                   />
                 </Grid>
@@ -117,8 +202,8 @@ class AddBook extends Component {
                     label="branch"
                     labelId="semester"
                     id="Semester"
-                    name="sem"
-                    value={this.state.sem}
+                    name="forsem"
+                    value={this.state.forsem}
                     onChange={this.handleChange}
                     className={classes.selector}
                     color="secondary"
@@ -137,7 +222,7 @@ class AddBook extends Component {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    type="text"
+                    type=""
                     name="price"
                     label="Price"
                     className={classes.textField}
@@ -146,17 +231,35 @@ class AddBook extends Component {
                     color="secondary"
                     fullWidth
                   />
-                </Grid>   
+                </Grid>
+                <Grid item xs={6}>
+                  <input
+                    type="file"
+                    id="imageinput"
+                    onChange={this.handleImageChange}
+                  ></input>
+                </Grid>
               </Grid>
             </form>
           </DialogContent>
-          <DialogActions>
-              <Button onChange={this.handleSubmit} color="secoundary">
-                  Add
-              </Button>
-              <Button onChange={this.handleClose}>
-                  Cancel
-              </Button>
+          <DialogActions className={classes.action}>
+            <Button
+              onClick={this.handleSubmit}
+              color="secondary"
+              variant="contained"
+              className={classes.buttonStyle}
+              disabled={loading}
+            >
+              Add
+            </Button>
+            <Button
+              onClick={this.handleClose}
+              color="secondary"
+              variant="contained"
+              className={classes.buttonStyle}
+            >
+              Cancel
+            </Button>
           </DialogActions>
         </Dialog>
       </Fragment>
@@ -168,7 +271,7 @@ const mapStateToProp = (state) => ({
   bookstatus: state.data,
 });
 
-const mapActionToProp = { addBook };
+const mapActionToProp = { addBook, addimg };
 
 export default connect(
   mapStateToProp,
