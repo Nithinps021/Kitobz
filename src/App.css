@@ -5,6 +5,10 @@
 .home-grid-container{
   position: relative;
 }
+.NavBar-drawerPaper-7 {
+    width: 200px;
+    margin-top: 10vh;
+}
 body{
   background-color: rgb(256,256,256);
 }
@@ -51,7 +55,3 @@ body{
   margin-top: 1vh;
   box-shadow: none;
 } 
-.NavBar-drawerPaper-7 {
-    width: 200px;
-    margin-top: 10vh;
-}

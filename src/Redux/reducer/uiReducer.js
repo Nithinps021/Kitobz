@@ -1,9 +1,10 @@
-import {SET_ERRORS,LOADING_UI,CLEAR_ERRORS} from '../type'
+import {SET_ERRORS,LOADING_UI,CLEAR_ERRORS,MENU_FALSE,MENU_TRUE} from '../type'
 
 
 const initialState ={
     loading:false,
-    errors:null
+    errors:null,
+    open:false,
 };
  
 export default function(state = initialState ,action){
@@ -25,6 +26,18 @@ export default function(state = initialState ,action){
                 loading:false,
                 errors:null
             })
+        case MENU_TRUE:{
+            return({
+                ...state,
+                open:true,
+            })
+        }
+        case MENU_FALSE: {
+            return ({
+                ...state,
+                open: false,
+            })
+        }
         default:
             return state;        
     }

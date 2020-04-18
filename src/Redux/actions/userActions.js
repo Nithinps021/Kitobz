@@ -1,4 +1,4 @@
-import {SET_ERRORS,LOADING_UI,CLEAR_ERRORS,SET_UNAUTHENTICATED,SET_AUTHENTICATED,SET_USER} from '../type'
+import {SET_ERRORS,LOADING_UI,CLEAR_ERRORS,SET_UNAUTHENTICATED,SET_AUTHENTICATED,SET_USER,MENU_FALSE,MENU_TRUE} from '../type'
 import axios from 'axios'
 
 export const loginUser = (loginDetails, history) => (dispach) =>{
@@ -70,4 +70,14 @@ export const logoutUser = () => (dispach) =>{
   dispach({type:SET_UNAUTHENTICATED})
 }
 
+export const menuClick = () => (dispach)=>{
+   dispach({
+     type:MENU_TRUE,
+   })
+}
 
+export const menuClose = () => (dispach )=>{
+  dispach({
+    type: MENU_FALSE,
+  })
+}
