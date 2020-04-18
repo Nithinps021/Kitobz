@@ -36,7 +36,7 @@ const style = {
     marginBottom: "2vh",
   },
   text: {
-   color:"#00000"
+    color: "#00000",
   },
   label: {
     marginTop: 7,
@@ -46,6 +46,10 @@ const style = {
   },
   action: {
     alignSelf: "center",
+  },
+  input: {
+    content: "Upload Image",
+    outline: "none",
   },
 };
 
@@ -128,7 +132,7 @@ class AddBook extends Component {
           >
             <DialogContent>
               <DialogContentText className={classes.text}>
-                <Typography variant="h7" >
+                <Typography variant="h7">
                   The Book has been successfully Added.
                 </Typography>
               </DialogContentText>
@@ -233,10 +237,14 @@ class AddBook extends Component {
                   />
                 </Grid>
                 <Grid item xs={6}>
+                  <InputLabel htmlFor="imageinput" className={classes.label}>
+                    Upload an Image
+                  </InputLabel>
                   <input
                     type="file"
                     id="imageinput"
                     onChange={this.handleImageChange}
+                    className={classes.input}
                   ></input>
                 </Grid>
               </Grid>
@@ -256,7 +264,7 @@ class AddBook extends Component {
               onClick={this.handleClose}
               color="secondary"
               variant="contained"
-              className={classes.buttonStyle}
+              className={classes.input}
             >
               Cancel
             </Button>

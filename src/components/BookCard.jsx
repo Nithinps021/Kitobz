@@ -12,10 +12,12 @@ import Paper from "@material-ui/core/Paper";
 const style = {
   card: {
     height: 340,
+ 
   },
   image: {
     height: 220,
     objectFit: "cover",
+
   },
   status: {
     textAlign: "end",

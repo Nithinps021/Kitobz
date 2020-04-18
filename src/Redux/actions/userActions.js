@@ -69,3 +69,5 @@ export const logoutUser = () => (dispach) =>{
   delete axios.defaults.headers.common['Authorization']
   dispach({type:SET_UNAUTHENTICATED})
 }
+
+
