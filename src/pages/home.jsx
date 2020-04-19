@@ -33,7 +33,7 @@ import { getUserData } from "../Redux/actions/userActions";
 //   }
 // });
 
-const drawerWidth = 180;
+const drawerWidth = 170;
 
 const styles = (theme) => ({
   content: {
@@ -100,7 +100,7 @@ class home extends Component {
           >
             <Grid
               container
-              spacing={3}
+              spacing={2}
               direction="row"
               className="grid-container"
             >
