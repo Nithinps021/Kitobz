@@ -31,6 +31,9 @@ const Theme = createMuiTheme({
     secondary: {
       main: "#ff1e56",
       contrastText: "#fff"
+    },
+    ternary :{
+      main:"#BEBEBE",
     }
   },
   typography: {
