@@ -16,6 +16,7 @@ import Login from './pages/login.jsx';
 import Home from './pages/home.jsx';
 import AuthRoute from './util/AuthRoute.jsx'
 import HomeRoute from './util/homeRoute.jsx'
+import MyBooks from './pages/MyBooks'
 
 // MUI imports
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
@@ -99,6 +100,7 @@ function App() {
               <AuthRoute exact path="/login" component ={Login}></AuthRoute>
               <AuthRoute exact path="/signup" component ={Signup}></AuthRoute>
               <HomeRoute exact path="/" component ={Home}></HomeRoute>
+              <Route exact path="/profile" component={MyBooks}/>
             </MuiThemeProvider>
           </Switch>
         </Router>

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "../App.css";
+import {Link} from 'react-router-dom'
 
 // components import
 import AddBook from "../components/AddBook";
 import Logout from "../components/Logout";
+import MyBooks from "../pages/MyBooks";
 
 // redux Imports
 import { connect } from "react-redux";
@@ -148,7 +150,7 @@ class NavBar extends Component {
             <Grid item xs={6} lg={2}>
               <Toolbar>
                 <Tooltip title="Home">
-                  <IconButton>
+                  <IconButton component={Link} to="/">
                     <HomeIcon color="secondary"></HomeIcon>
                   </IconButton>
                 </Tooltip>
@@ -184,13 +186,13 @@ class NavBar extends Component {
             hi {userDetails.username}
           </p>
           <List>
-            <ListItem button>
+            <ListItem button >
               <ListItemIcon>
                 <PersonPinIcon color="secondary" fontSize="default" />
               </ListItemIcon>
               <ListItemText>Account</ListItemText>
             </ListItem>
-            <ListItem button>
+            <ListItem button component={Link} to="/profile">
               <ListItemIcon>
                 <MenuBookIcon color="secondary" fontSize="default" />
               </ListItemIcon>
