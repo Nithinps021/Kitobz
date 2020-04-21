@@ -17,6 +17,8 @@ export const ADD_BOOK ='ADD_BOOK'
 export const BOOK_ERROR='BOOK_ERROR'
 export const ADD_IMG='ADD_IMG'
 export const ADDING="ADDING"
+export const ADD_USER_BOOKS ="ADD_USER_BOOKS"
+export const ADD_USER_BOOKS_FAIL ="ADD_USER_BOOKS_FAIL" 
 
 
 

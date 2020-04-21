@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from "react";
 
+// components imports'
+import DeleteBook from '../components/deleteBook'
+
 // MUI imports
 import withStyles from "@material-ui/core/styles/withStyles";
 import Card from "@material-ui/core/Card";
@@ -15,58 +18,54 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 const styles = (theme) => ({
   img: {
-    height: 150,
+    height: 160,
+    padding: 0,
   },
-  iconbutton:{
-    padding:0,
-    margin:0,
+  content: {
+    marginTop: 5,
   },
-  buttonDiv:{
-    alignSelf:"end",
-    padding:"0",
-    margin:"0",
-  }
+  buttonDiv: {
+    marginLeft: "26vw",
+    padding: "0",
+    display: "flex",
+  },
+  cardContent: {
+    padding: "0px",
+  },
 });
 
 export class myBook extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, details } = this.props;
     return (
       <Fragment>
-        <Grid item xs={12}>
-          <Paper elevation={3}>
+        <Grid item>
+          <Paper elevation={3} style={{ marginBottom: 30 }}>
             <Card>
               <Grid container spacing={3}>
-                <Grid item xs={3}>
-                  <CardMedia
-                    image="https://firebasestorage.googleapis.com/v0/b/fir-fbb84.appspot.com/o/892149701282.jpg?alt=media"
-                    className={classes.img}
-                  />
+                <Grid item md={3} ls={3} xs={4}>
+                  <CardMedia image={details.imgURL} className={classes.img} />
                 </Grid>
                 <Grid item direction="column">
-                  <CardContent>
-                    <Typography variant="h5">My BOOK name</Typography>
-                    <Typography variant="body1"> price 156 </Typography>
-                    <Typography variant="body1"> Status available </Typography>
-                    <div className={classes.buttonDiv}>
-                      <IconButton>
-                        <Tooltip title="Delete">
-                          <DeleteIcon
-                            color="secondary"
-                            className={classes.iconbutton}
-                          />
-                        </Tooltip>
-                      </IconButton>
-                      <IconButton>
-                        <Tooltip title="Edit">
-                          <EditIcon
-                            color="secondary"
-                            className={classes.iconbutton}
-                          />
-                        </Tooltip>
-                      </IconButton>
-                    </div>
+                  <CardContent className={classes.cardContent}>
+                    <Typography variant="h5">{details.bookname}</Typography>
+                    <Typography variant="body1" className={classes.content}>
+                      {" "}
+                      price {details.price}{" "}
+                    </Typography>
+                    <Typography variant="body1" className={classes.content}>
+                      {" "}
+                      Status {details.status}{" "}
+                    </Typography>
                   </CardContent>
+                  <span className={classes.buttonDiv}>
+                    <IconButton>
+                      <Tooltip title="Edit">
+                        <EditIcon color="secondary" />
+                      </Tooltip>
+                    </IconButton>
+                    <DeleteBook bookid={details.bookId} name={details.bookname  } />
+                  </span>
                 </Grid>
               </Grid>
             </Card>

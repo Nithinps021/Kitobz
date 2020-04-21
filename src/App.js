@@ -100,7 +100,7 @@ function App() {
               <AuthRoute exact path="/login" component ={Login}></AuthRoute>
               <AuthRoute exact path="/signup" component ={Signup}></AuthRoute>
               <HomeRoute exact path="/" component ={Home}></HomeRoute>
-              <Route exact path="/profile" component={MyBooks}/>
+              <HomeRoute exact path="/profile" component={MyBooks}/>
             </MuiThemeProvider>
           </Switch>
         </Router>

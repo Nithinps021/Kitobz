@@ -81,6 +81,12 @@ class AddBook extends Component {
       open: false,
     });
   };
+  handleClose2 = () => {
+    this.setState({
+      open: false,
+    });
+   window.location.reload(false);
+  };
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -139,7 +145,7 @@ class AddBook extends Component {
             </DialogContent>
             <DialogActions className={classes.action}>
               <Button
-                onClick={this.handleClose}
+                onClick={this.handleClose2}
                 color="secondary"
                 variant="contained"
               >
