@@ -1,5 +1,16 @@
 import axios from "axios";
-import { ADD_BOOK, BOOK_ERROR, ADD_IMG, ADDING, LOADING_UI, ADD_USER_BOOKS, CLEAR_ERRORS, ADD_USER_BOOKS_FAIL} from '../type'
+import {
+  UPDATE_USER_IMG,
+  UPDATE_BOOK,
+  ADD_BOOK,
+  BOOK_ERROR,
+  ADD_IMG,
+  ADDING,
+  LOADING_UI,
+  ADD_USER_BOOKS,
+  CLEAR_ERRORS,
+  ADD_USER_BOOKS_FAIL,
+} from "../type";
  
 
 export const addBook = (bookDetails)=>(dispach)=>{
@@ -69,4 +80,33 @@ export const deleteBook=(bookId)=>(dispach)=>{
     .catch(err =>{
         console.log(err)
     })
+}
+export const updateBook = (bookDetails) => (dispach) => {
+  dispach({ type: ADDING });
+  axios
+    .post("/updatebook", bookDetails)
+    .then((res) => {
+      dispach({
+        type: UPDATE_BOOK,
+      });
+      console.log("updated successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const updateImage =(imgURL) =>(dispach)=>{
+    axios
+      .post("/updateimg",imgURL)
+      .then((res) => {
+        console.log("image has been successfully Added");
+        dispach({
+            type:UPDATE_USER_IMG,
+            payload:imgURL.imgURL
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 }
