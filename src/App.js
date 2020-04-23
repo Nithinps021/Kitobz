@@ -17,6 +17,8 @@ import Home from './pages/home.jsx';
 import AuthRoute from './util/AuthRoute.jsx'
 import HomeRoute from './util/homeRoute.jsx'
 import MyBooks from './pages/MyBooks'
+import Profile from "./pages/profile";
+
 
 // MUI imports
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
@@ -93,14 +95,15 @@ if(token){
 function App() {
   return (
     <div className="App">
-      <Provider store ={store}>
+      <Provider store={store}>
         <Router>
           <Switch>
             <MuiThemeProvider theme={Theme}>
-              <AuthRoute exact path="/login" component ={Login}></AuthRoute>
-              <AuthRoute exact path="/signup" component ={Signup}></AuthRoute>
-              <HomeRoute exact path="/" component ={Home}></HomeRoute>
-              <HomeRoute exact path="/profile" component={MyBooks}/>
+              <AuthRoute exact path="/login" component={Login}></AuthRoute>
+              <AuthRoute exact path="/signup" component={Signup}></AuthRoute>
+              <HomeRoute exact path="/" component={Home}></HomeRoute>
+              <HomeRoute exact path="/mybooks" component={MyBooks} />
+              <HomeRoute exact path="/profile" component={Profile} />
             </MuiThemeProvider>
           </Switch>
         </Router>

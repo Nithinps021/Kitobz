@@ -10,6 +10,7 @@ import MyBooks from "../pages/MyBooks";
 // redux Imports
 import { connect } from "react-redux";
 import {menuClick,menuClose} from '../Redux/actions/userActions'
+import {getUserData} from '../Redux/actions/userActions'
 
 //material ui imports
 import AppBar from "@material-ui/core/AppBar";
@@ -20,9 +21,8 @@ import Grid from "@material-ui/core/Grid";
 
 // drawer MUI importxs
 import clsx from "clsx";
-import { withStyles, makeStyles, useTheme } from "@material-ui/core/styles";
+import { withStyles} from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -30,6 +30,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
+
 
 // MUI icons
 import MenuIcon from "@material-ui/icons/Menu";
@@ -98,6 +99,9 @@ const useStyles = (theme) => ({
 class NavBar extends Component {
   constructor(props) {
     super(props);
+  }
+  componentDidMount(){
+    this.props.getUserData();
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -178,7 +182,7 @@ class NavBar extends Component {
           <div className={classes.avatarDiv}>
             <Avatar
               alt="profile pic"
-              src={this.props.userDetails.imgURL}
+              src={this.props.userDetails.userDetails.imgURL}
               className={classes.avatar}
             />
           </div>
@@ -186,13 +190,13 @@ class NavBar extends Component {
             hi {userDetails.username}
           </p>
           <List>
-            <ListItem button >
+            <ListItem button component={Link} to="/profile">
               <ListItemIcon>
                 <PersonPinIcon color="secondary" fontSize="default" />
               </ListItemIcon>
               <ListItemText>Account</ListItemText>
             </ListItem>
-            <ListItem button component={Link} to="/profile">
+            <ListItem button component={Link} to="/mybooks">
               <ListItemIcon>
                 <MenuBookIcon color="secondary" fontSize="default" />
               </ListItemIcon>
@@ -228,7 +232,7 @@ const mapStateToProps = (state) => ({
   menu:state.ui
 });
 
-const mapActionToProps = {menuClick,menuClose};
+const mapActionToProps = {menuClick,menuClose,getUserData};
 
 export default connect(
   mapStateToProps,

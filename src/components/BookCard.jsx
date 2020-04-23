@@ -105,7 +105,7 @@ class BookCard extends Component {
     return (
       <Fragment>
         <Grid item xs={6} sm={4} md={3} lg={2}>
-          <Paper elevation={4}>
+          <Paper elevation={15}>
             <Card id={bookId} className={classes.card}>
               <CardActionArea onClick={this.handleOpen}>
                 <CardMedia

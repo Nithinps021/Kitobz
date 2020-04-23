@@ -28,17 +28,23 @@ export class MyBooks extends Component {
     return (
       <div>
         <NavBar />
-        <div style={{ marginTop: 65 }}>
+        <span style={{ marginTop: 0 }}>
           {loading && <LinearProgress color="secondary" />}
-        </div>
+        </span>
         <div style={{ marginTop: "10vh", padding: "3vw" }}>
           <Grid container>
-            <Grid item ls={3} md={2}></Grid>
-            <Grid item ls={6} md={6} xs={12}>
-              {!notnull ? <Typography variant="h6">No Book added yet..</Typography>:""}
+            <Grid item lg={3} md={2}></Grid>
+            <Grid item lg={6} md={6} xs={12}>
+              {!notnull && books.length === 0 ? (
+                <span>
+                  <Typography variant="h6">No Book added yet..</Typography>
+                </span>
+              ) : (
+                ""
+              )}
               {listBooks}
             </Grid>
-            <Grid item ls={3} md={2}></Grid>
+            <Grid item lg={3} md={2}></Grid>
           </Grid>
         </div>
       </div>

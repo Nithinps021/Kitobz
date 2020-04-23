@@ -70,7 +70,7 @@ class home extends Component {
       .catch((error) => {
         console.log(error);
       });
-    this.props.getUserData();
+    
   }
 
   render() {
