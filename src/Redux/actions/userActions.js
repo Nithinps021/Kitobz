@@ -1,4 +1,14 @@
-import {SET_ERRORS,LOADING_UI,CLEAR_ERRORS,SET_UNAUTHENTICATED,SET_AUTHENTICATED,SET_USER,MENU_FALSE,MENU_TRUE} from '../type'
+import {
+  UPDATE_PROFILE,
+  SET_ERRORS,
+  LOADING_UI,
+  CLEAR_ERRORS,
+  SET_UNAUTHENTICATED,
+  SET_AUTHENTICATED,
+  SET_USER,
+  MENU_FALSE,
+  MENU_TRUE,
+} from "../type";
 import axios from 'axios'
 
 export const loginUser = (loginDetails, history) => (dispach) =>{
@@ -61,9 +71,10 @@ export const signupUser = (signDetails, history) => (dispach) =>{
 
 export const logoutUser = () => (dispach) =>{
   localStorage.removeItem('FBToken');
-  delete axios.defaults.headers.common['Authorization']
-  
+  delete axios.defaults.headers.common['Authorization'] 
   dispach({type:SET_UNAUTHENTICATED})
+  window.location.reload(false);
+
 }
 
 export const menuClick = () => (dispach)=>{
@@ -76,4 +87,21 @@ export const menuClose = () => (dispach )=>{
   dispach({
     type: MENU_FALSE,
   })
+}
+
+export const updateProfile = (details) =>(dispach)=>{
+  dispach({type:LOADING_UI})
+  axios
+    .post("/updateinfo", details)
+    .then((res) => {
+      console.log("updated successfully");
+      dispach({
+        type:UPDATE_PROFILE,
+        payload:details
+      });
+      dispach({type:CLEAR_ERRORS})
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
