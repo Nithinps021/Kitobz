@@ -1,4 +1,5 @@
 import {
+  OFF_UPDATE,
   UPDATE_USER_IMG,
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
@@ -11,7 +12,6 @@ const initialState = {
     authentication:false,
     userDetails:{},
     updated:false,
-
 }
 
 export default function(state = initialState , action){
@@ -45,6 +45,12 @@ export default function(state = initialState , action){
           ...state,
           updated:true
         }
+      }
+      case OFF_UPDATE:{
+        return({
+          ...state,
+          updated:false
+        })
       }
       default:
         return state;

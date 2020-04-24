@@ -6,7 +6,7 @@ export const SET_USER ='SET_USER '
 export const LOADING_USER ='LOADING_USER'
 export const UPDATE_USER_IMG = "UPDATE_USER_IMG";   
 export const UPDATE_PROFILE = "UPDATE_PROFILE"; 
-
+export const OFF_UPDATE = "OFF_UPDATE";
 
 // UI REDUCER TYPE
 export const SET_ERRORS ='SET_ERRORS'

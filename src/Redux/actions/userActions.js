@@ -1,4 +1,5 @@
 import {
+  OFF_UPDATE,
   UPDATE_PROFILE,
   SET_ERRORS,
   LOADING_UI,
@@ -102,6 +103,16 @@ export const updateProfile = (details) =>(dispach)=>{
       dispach({type:CLEAR_ERRORS})
     })
     .catch((err) => {
-      console.log(err);
+      dispach({
+        type:SET_ERRORS,
+        payload:err.response.data,
+      })
+      console.log(err.response.data);
     });
+}
+
+export const offupdate=()=>(dispach)=>{
+  dispach({
+    type:OFF_UPDATE
+  })
 }

@@ -18,10 +18,10 @@ import Button from "@material-ui/core/Button";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import UpdateIcon from "@material-ui/icons/Update";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import IconButton from '@material-ui/core/IconButton'
 // Redux imports
 import { connect } from "react-redux";
-import {updateProfile} from '../Redux/actions/userActions'
+import { updateProfile,offupdate } from "../Redux/actions/userActions";
 
 const style = {
   form: {
@@ -58,11 +58,20 @@ class EditUserDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      open:false,
       username: this.props.user.username,
       branch: this.props.user.branch,
       sem: this.props.user.sem,
       phoneNo: this.props.user.phoneNo,
+      errors:{}
     };
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.ui.errors) {
+      this.setState({
+        errors: nextProps.ui.errors,
+      });
+    }
   }
   handleOpen = () => {
     this.setState({
@@ -72,12 +81,15 @@ class EditUserDetails extends Component {
   handleClose = () => {
     this.setState({
       open: false,
+      errors: {},
     });
   };
   handleClose2 = () => {
     this.setState({
       open: false,
+      errors:{},
     });
+    this.props.offupdate();
   };
   handleChange = (event) => {
     this.setState({
@@ -90,7 +102,7 @@ class EditUserDetails extends Component {
       sem: this.state.sem || this.props.user.sem,
       phoneNo: this.state.phoneNo || this.props.user.phoneNo,
     };
-    this.props.updateProfile(userData);    
+    this.props.updateProfile(userData);
   };
 
   render() {
@@ -98,29 +110,34 @@ class EditUserDetails extends Component {
       classes,
       ui: { loading },
     } = this.props;
-    console.log(this.props.user.username)
-
+    const {errors}=this.state
     return (
       <Fragment>
         <Tooltip title="Update Details" placement="top">
-          <Button
-            variant="contained"
-            startIcon={<UpdateIcon />}
-            color="primary"
-            onClick={this.handleOpen}
-          >
-            update
-          </Button>
+          {window.screen.availWidth < 780 ? (
+            <IconButton onClick={this.handleOpen}>
+              <UpdateIcon color="secondary" />
+            </IconButton>
+          ) : (
+            <Button
+              variant="contained"
+              startIcon={<UpdateIcon />}
+              color="primary"
+              onClick={this.handleOpen}
+            >
+              update
+            </Button>
+          )}
         </Tooltip>
         {this.props.updated && (
           <Dialog
             open={this.state.open}
-            onClose={this.handleClose}
+            onClose={this.handleClose2}
             maxWidth="sm"
           >
             <DialogContent>
               <DialogContentText className={classes.text}>
-                <Typography variant="h7">
+                <Typography variant={window.screen.availWidth < 780?"h7" :"h6" }>
                   Details has been Successfully updated...
                 </Typography>
               </DialogContentText>
@@ -166,7 +183,7 @@ class EditUserDetails extends Component {
                     }}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item lg={6} md={6} xs={12}>
                   <InputLabel id="branchlabel" className={classes.label}>
                     Branch
                   </InputLabel>
@@ -193,7 +210,7 @@ class EditUserDetails extends Component {
                     <MenuItem value={"ARCHI"}>Architecture</MenuItem>
                   </Select>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item lg={6} md={6} xs={12}>
                   <InputLabel htmlFor="semester" className={classes.label}>
                     Semester
                   </InputLabel>
@@ -234,6 +251,8 @@ class EditUserDetails extends Component {
                     color="secondary"
                     size="medium"
                     fullWidth
+                    helperText={errors.phoneNo}
+                    error={errors.phoneNo ? true : false}
                   />
                 </Grid>
               </Grid>
@@ -273,11 +292,11 @@ class EditUserDetails extends Component {
 }
 const mapStateToProp = (state) => ({
   ui: state.ui,
-  user:state.user.userDetails,
-  updated:state.user.updated,
+  user: state.user.userDetails,
+  updated: state.user.updated,
 });
 
-const mapActionToProp = {updateProfile};
+const mapActionToProp = { updateProfile, offupdate };
 
 export default connect(
   mapStateToProp,

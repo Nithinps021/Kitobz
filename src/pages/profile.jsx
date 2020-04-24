@@ -2,13 +2,12 @@ import React, { Component, Fragment } from "react";
 
 // components
 import NavBar from "../components/NavBar";
-import Update from '../components/editUserDetails'
+import Update from "../components/editUserDetails";
 
 // redux imports
 import { connect } from "react-redux";
-import {addimg,updateImage} from "../Redux/actions/dataActions";
+import { addimg, updateImage } from "../Redux/actions/dataActions";
 import { getUserData } from "../Redux/actions/userActions";
-
 
 // mui imports
 import Grid from "@material-ui/core/Grid";
@@ -30,69 +29,119 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-
 import book from "../images/book_img.jpg";
 
 const style = (theme) => ({
   root: {
-    marginTop: "10vh",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "10vh",
+    },
+    marginTop: 0,
+    marginBottom: "10vh",
   },
   img: {
+    [theme.breakpoints.up("md")]: {
+      marginTop: 0,
+      height: 300,
+      width: "99vw",
+      objectFit: "cover",
+      zIndex: 0,
+    },
     marginTop: 0,
     height: 300,
-    width: "99vw",
+    width: "100vw",
     objectFit: "cover",
     zIndex: 0,
+    position: "fixed",
   },
   avatarDiv: {
-    marginLeft: "21%",
-    marginRight: "20%",
+    [theme.breakpoints.up("md")]: {
+      marginLeft: "21%",
+      marginRight: "20%",
+      position: "absolute",
+      zIndex: "3",
+      top: "30%",
+    },
     position: "absolute",
     zIndex: "3",
-    top: "30%",
+    top: "30vh",
+    marginLeft: "30vw",
+    marginRight: "30vw",
   },
   editicon: {
+    [theme.breakpoints.up("md")]: {
+      padding: 0,
+      marginLeft: "8vw",
+      top: 0,
+      margin: 0,
+    },
+    marginLeft: "30vw",
     padding: 0,
-    marginLeft: "8vw",
-    top: 0,
-    margin: 0,
   },
   avatar: {
+    [theme.breakpoints.up("md")]: {
+      width: theme.spacing(15),
+      height: theme.spacing(15),
+      marginLeft: "0vw",
+    },
     width: theme.spacing(15),
     height: theme.spacing(15),
-    // position:"absolute"
+    marginLeft: "3vw",
   },
   paper: {
-    position: "relative",
-    padding: "25vw",
-    paddingTop: "7vw",
+    [theme.breakpoints.up("md")]: {
+      position: "relative",
+      padding: "25vw",
+      paddingTop: "7vw",
+      paddingBottom: "7vw",
+    },
     paddingBottom: "7vw",
+    marginBottom: "5vh",
   },
   table: {
-    MaxWidth: 50,
-    marginTop:50
+    [theme.breakpoints.up("md")]: {
+      MaxWidth: 50,
+      marginTop: 50,
+    },
+    marginTop: "0vh",
   },
-  progress:{
-     zIndex:"5",
-     position:"absolute",
-     marginTop:"3vw",
-     marginLeft:"3vw" 
-
+  progress: {
+    [theme.breakpoints.up("md")]: {
+      zIndex: "5",
+      position: "absolute",
+      marginTop: "3vw",
+      marginLeft: "3vw",
+    },
+    position: "absolute",
+    zIndex: "5",
+    marginTop: "5vh",
+    marginLeft: "6vh",
   },
-  update:{
-    position:"absolute",
-    zIndex:"5",
-    marginLeft:"30vw",
-    marginTop:"10vw"
- 
-  }
+  update: {
+    [theme.breakpoints.up("md")]: {
+      position: "absolute",
+      zIndex: "5",
+      marginLeft: "30vw",
+      marginTop: "10vw",
+    },
+    position: "absolute",
+    zindex: "5",
+    marginLeft: "22vh",
+    marginTop: "10vh",
+  },
+  user: {
+    [theme.breakpoints.up("md")]: {
+      marginTop: "0vh",
+      marginLeft: 0,
+    },
+    marginTop: "15vh",
+    marginLeft: 0,
+  },
 });
 
 export class profile extends Component {
-
-  componentDidMount(){
+  componentDidMount() {
     this.props.getUserData();
-
   }
 
   handleImageChange = (event) => {
@@ -100,36 +149,39 @@ export class profile extends Component {
     const formDate = new FormData();
     formDate.append("image", image, image.name);
     this.props.addimg(formDate);
-    if(!this.props.data.loading){
-      const img={imgURL:this.props.data.imgURL}
+    if (!this.props.data.loading) {
+      const img = { imgURL: this.props.data.imgURL };
       this.props.updateImage(img);
     }
   };
-  handleInputImg=()=>{
-    const button = document.getElementById('imageinput');
+  handleInputImg = () => {
+    const button = document.getElementById("imageinput");
     button.click();
-  }
+  };
   handleImageChange = (event) => {
-       const image = event.target.files[0];
-       const formDate = new FormData();
-       formDate.append("image", image, image.name);
-       this.props.addimg(formDate);      
+    const image = event.target.files[0];
+    const formDate = new FormData();
+    formDate.append("image", image, image.name);
+    this.props.addimg(formDate);
   };
 
   render() {
-    const { classes,userDetails:{userDetails} } = this.props;
-     let bname;
-     for (let i = 0; i < Branch.length; i++) {
-       if (Branch[i].short == userDetails.branch) {
-         bname = Branch[i].name;
-         break;
-       }
-     }
-      if (this.props.data.imgURL && !this.props.loading) {
-        const img = { imgURL: this.props.data.imgURL };
-        this.props.updateImage(img);
+    const {
+      classes,
+      userDetails: { userDetails },
+    } = this.props;
+    let bname;
+    for (let i = 0; i < Branch.length; i++) {
+      if (Branch[i].short == userDetails.branch) {
+        bname = Branch[i].name;
+        break;
       }
-     
+    }
+    if (this.props.data.imgURL && !this.props.loading) {
+      const img = { imgURL: this.props.data.imgURL };
+      this.props.updateImage(img);
+    }
+
     return (
       <Fragment className={classes.root}>
         <NavBar style={{ margin: 0 }} />
@@ -181,7 +233,7 @@ export class profile extends Component {
               <Paper elevation={15} className={classes.paper}>
                 <Grid container direction="column" alignContent="center">
                   <Grid item xs={12}>
-                    <Typography variant="h4">{userDetails.username}</Typography>
+                    <Typography variant="h4" className={classes.user}>{userDetails.username}</Typography>
                   </Grid>
                 </Grid>
                 <Table className={classes.table}>
@@ -224,11 +276,10 @@ export class profile extends Component {
 
 const mapStateToProps = (state) => ({
   userDetails: state.user,
-  data:state.data,
+  data: state.data,
 });
 
 const mapActionToProps = { addimg, updateImage, getUserData };
-
 
 const Branch = [
   { short: "CSE", name: "Computer Science" },

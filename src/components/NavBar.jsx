@@ -41,11 +41,13 @@ import MenuBookIcon from "@material-ui/icons/MenuBook";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import SettingsIcon from "@material-ui/icons/Settings";
 import FilterListIcon from "@material-ui/icons/FilterList";
-
+import kitobz from "../images/KiTobZ.svg";
 const drawerWidth = 200;
 
 const useStyles = (theme) => ({
-  root: {},
+  root: {
+    marginBottom: 0,
+  },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
@@ -69,7 +71,7 @@ const useStyles = (theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    marginTop:"10vh"
+    marginTop: "10vh",
   },
   drawerPaper: {
     width: drawerWidth,
@@ -91,9 +93,19 @@ const useStyles = (theme) => ({
   avatarDiv: {
     alignSelf: "center",
   },
-  welcome:{
-    textAlign:"center"
-  }
+  welcome: {
+    textAlign: "center",
+  },
+  kitobz: {
+    [theme.breakpoints.up("md")]: {
+      objectfit: "cover",
+      height: 27,
+      marginLeft: 25,
+    },
+    height:10,
+    objectfit: "cover",
+    height: 27,
+  },
 });
 
 class NavBar extends Component {
@@ -143,11 +155,9 @@ class NavBar extends Component {
                     this.props.menu.open && classes.hide
                   )}
                 >
-                  <MenuIcon color="secondary" />
+                  <MenuIcon color="white" />
                 </IconButton>
-                <Typography varient="h1" noWrap={true}>
-                  KiTobZ
-                </Typography>
+                <img src={kitobz} className={classes.kitobz} />
               </Toolbar>
             </Grid>
             <Grid item lg={6}></Grid>
@@ -175,8 +185,8 @@ class NavBar extends Component {
           }}
         >
           <div className={classes.drawerHeader}>
-            <IconButton onClick={this.handleClose}>
-              <CloseIcon color="secondary" />
+            <IconButton onClick={this.handleClose} color="inherit"> 
+              <CloseIcon color="white" />
             </IconButton>
           </div>
           <div className={classes.avatarDiv}>
