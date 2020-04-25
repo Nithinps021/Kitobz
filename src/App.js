@@ -18,7 +18,7 @@ import AuthRoute from './util/AuthRoute.jsx'
 import HomeRoute from './util/homeRoute.jsx'
 import MyBooks from './pages/MyBooks'
 import Profile from "./pages/profile";
-
+import Kitobz from './pages/kitobz';
 
 // MUI imports
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
@@ -99,8 +99,7 @@ function App() {
         <Router>
           <Switch>
             <MuiThemeProvider theme={Theme}>
-              <AuthRoute exact path="/login" component={Login}></AuthRoute>
-              <AuthRoute exact path="/signup" component={Signup}></AuthRoute>
+              <AuthRoute exact path="/kitobz" component={Kitobz}></AuthRoute>
               <HomeRoute exact path="/" component={Home}></HomeRoute>
               <HomeRoute exact path="/mybooks" component={MyBooks} />
               <HomeRoute exact path="/profile" component={Profile} />

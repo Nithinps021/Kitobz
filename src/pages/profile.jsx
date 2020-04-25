@@ -17,8 +17,6 @@ import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
-import Card from "@material-ui/core/Card";
-import Divider from "@material-ui/core/Divider";
 import { Box, IconButton, Tooltip, CardContent } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -29,7 +27,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import book from "../images/book_img.jpg";
+import book from "../images/book_img.webp";
 
 const style = (theme) => ({
   root: {
@@ -168,6 +166,7 @@ export class profile extends Component {
   render() {
     const {
       classes,
+      ui:{loading},
       userDetails: { userDetails },
     } = this.props;
     let bname;
@@ -185,6 +184,7 @@ export class profile extends Component {
     return (
       <Fragment className={classes.root}>
         <NavBar style={{ margin: 0 }} />
+        {loading && <LinearProgress color="secondary" />}
         <Grid container>
           <img src={book} className={classes.img} />
           <Grid item lg={3} xs={12}></Grid>
@@ -233,7 +233,9 @@ export class profile extends Component {
               <Paper elevation={15} className={classes.paper}>
                 <Grid container direction="column" alignContent="center">
                   <Grid item xs={12}>
-                    <Typography variant="h4" className={classes.user}>{userDetails.username}</Typography>
+                    <Typography variant="h4" className={classes.user}>
+                      {userDetails.username}
+                    </Typography>
                   </Grid>
                 </Grid>
                 <Table className={classes.table}>
@@ -277,6 +279,7 @@ export class profile extends Component {
 const mapStateToProps = (state) => ({
   userDetails: state.user,
   data: state.data,
+  ui:state.ui
 });
 
 const mapActionToProps = { addimg, updateImage, getUserData };

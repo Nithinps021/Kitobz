@@ -24,13 +24,15 @@ export const loginUser = (loginDetails, history) => (dispach) =>{
         dispach(getUserData())
         dispach({type:CLEAR_ERRORS})
         history.push("/");
+
       })
       .catch((error) => {
-          dispach({
-              type:SET_ERRORS,
-              payload:error.response.data
-          })
-        console.log(error.response.data)
+        if(error.response && error.response.data){
+           dispach({
+             type: SET_ERRORS,
+             payload: error.response.data,
+           });
+        }        
       });
 }
 
@@ -62,11 +64,14 @@ export const signupUser = (signDetails, history) => (dispach) =>{
       history.push("/");
     })
     .catch((error) => {
-        dispach({
-            type:SET_ERRORS,
-            payload:error.response.data
-        })
-      console.log(error.response.data)
+      if (error.response && error.response.data){
+           dispach({
+             type: SET_ERRORS,
+             payload: error.response.data,
+           });
+      }
+       
+
     });
 }
 

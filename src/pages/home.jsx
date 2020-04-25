@@ -6,9 +6,7 @@ import NavBar from "../components/NavBar.jsx";
 import "../css/home.css";
 import BookCard from "../components/BookCard";
 
-// materila ui imports
-// import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-// import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+// mui imports
 import Grid from "@material-ui/core/Grid";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -17,21 +15,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from "react-redux";
 import { getUserData } from "../Redux/actions/userActions";
 
-// const Theme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       main: "#323232",
-//       contrastText: "#fff"
-//     },
-//     secondary: {
-//       main: "#ff1e56",
-//       contrastText: "#fff"
-//     }
-//   },
-//   typography: {
-//     useNextVarients: true
-//   }
-// });
 
 const drawerWidth = 170;
 
