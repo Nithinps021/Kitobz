@@ -159,8 +159,9 @@ class BookCard extends Component {
             </IconButton>
           </DialogTitle>
           <DialogContent>
-            <Grid container direction="row" spacing={3}>
-              <Grid item xs={4}>
+            <Grid container spacing={1}>        
+              {window.screen.availWidth < 780 ?(<Grid item xs={2}></Grid>):<span></span>}
+              <Grid item lg={4} xs={8} sm={4}>
                 <Card>
                   <CardMedia
                     image={imgURL}
@@ -169,9 +170,10 @@ class BookCard extends Component {
                   />
                 </Card>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={2}></Grid>
+              <Grid item lg={6}>
                 <Grid container spacing={2}>
-                  <Grid item xs={8}>
+                  <Grid item lg={8} xs={8}>
                     <Typography variant="h6">{bookname}</Typography>
                   </Grid>
                   <IconButton onClick={handleWishlist} className={classes.icon}>
@@ -179,46 +181,46 @@ class BookCard extends Component {
                       color={this.state.wish ? "secondary" : "ternary"}
                     />
                   </IconButton>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>Seller</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>{username}</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>For Semester</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>{forsem}</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>For Brach</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>{bname}</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>Price</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>₹ {price}</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>Contact</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>{phoneNo}</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>Posted On</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>{date}</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>Status</Typography>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} xs={6}>
                     <Typography>{status}</Typography>
                   </Grid>
                 </Grid>
