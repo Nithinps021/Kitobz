@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch,BrowserRouter as Router} from 'react-router-dom'; 
+import {Route,Switch,BrowserRouter as Router} from 'react-router-dom'; 
 import './App.css';
 import decoder from 'jwt-decode'
 import axios from 'axios'
@@ -85,7 +85,7 @@ if(token){
   console.log(decodedVal)
   if(decodedVal.exp*1000 < Date.now()){
     store.dispatch(logoutUser)
-    window.location.href = '/login'
+    window.location.href = '/'
   }
   else{
     store.dispatch({type:SET_AUTHENTICATED});
@@ -99,7 +99,8 @@ function App() {
         <Router>
           <Switch>
             <MuiThemeProvider theme={Theme}>
-              <AuthRoute exact path="/" component={Kitobz}></AuthRoute>
+              <AuthRoute exact path="/" component={Kitobz}></AuthRoute>     
+              {/* <Route exact path='/' component={Kitobz}></Route> */}
               <HomeRoute exact path="/home" component={Home}></HomeRoute>
               <HomeRoute exact path="/mybooks" component={MyBooks} />
               <HomeRoute exact path="/profile" component={Profile} />

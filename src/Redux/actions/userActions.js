@@ -23,7 +23,7 @@ export const loginUser = (loginDetails, history) => (dispach) =>{
         dispach({type:SET_AUTHENTICATED});
         dispach(getUserData())
         dispach({type:CLEAR_ERRORS})
-        history.push("/");
+        history.push("/home");
 
       })
       .catch((error) => {
@@ -49,7 +49,7 @@ export const getUserData = () => (dispatch)=>{
             })
 }
 
-export const signupUser = (signDetails, history) => (dispach) =>{
+export const signupUser = (signDetails,history) => (dispach) =>{
   dispach({type:LOADING_UI})
   axios
     .post("/signup", signDetails)
@@ -60,8 +60,9 @@ export const signupUser = (signDetails, history) => (dispach) =>{
       axios.defaults.headers.common['Authorization']=FBIdToken;
       dispach({type:SET_AUTHENTICATED});
       dispach(getUserData())
+      history.push("/home");
       dispach({type:CLEAR_ERRORS})
-      history.push("/");
+     
     })
     .catch((error) => {
       if (error.response && error.response.data){
@@ -70,8 +71,6 @@ export const signupUser = (signDetails, history) => (dispach) =>{
              payload: error.response.data,
            });
       }
-       
-
     });
 }
 
