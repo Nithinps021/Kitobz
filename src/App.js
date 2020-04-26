@@ -29,18 +29,19 @@ const Theme = createMuiTheme({
   palette: {
     primary: {
       main: "#323232",
-      contrastText: "#fff"
+      contrastText: "#fff",
     },
     secondary: {
       main: "#ff1e56",
-      contrastText: "#fff"
+      contrastText: "#fff",
     },
-    ternary :{
-      main:"#BEBEBE",
-    }
+    ternary: {
+      main: "#BEBEBE",
+      contrastText: "#0000",
+    },
   },
   typography: {
-    useNextVarients: true
+    useNextVarients: true,
   },
   form: {
     // textAlign: "center",
@@ -78,6 +79,7 @@ const Theme = createMuiTheme({
   },
 });
 
+axios.defaults.baseURL = "https://us-central1-fir-fbb84.cloudfunctions.net/api";
 
 const token = localStorage.FBToken
 if(token){
@@ -93,13 +95,13 @@ if(token){
   }  
 }
 function App() {
-  return (
+  return (  
     <div className="App">
       <Provider store={store}>
         <Router>
           <Switch>
             <MuiThemeProvider theme={Theme}>
-              <AuthRoute exact path="/kitobz" component={Kitobz}></AuthRoute>
+              <AuthRoute exact path="/" component={Kitobz}></AuthRoute>
               <HomeRoute exact path="/" component={Home}></HomeRoute>
               <HomeRoute exact path="/mybooks" component={MyBooks} />
               <HomeRoute exact path="/profile" component={Profile} />
