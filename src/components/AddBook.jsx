@@ -120,7 +120,7 @@ class AddBook extends Component {
   render() {
     const {
       classes,
-      bookstatus: { imgURL, added, loading },
+      bookstatus: {added, loading },
     } = this.props;
 
     return (

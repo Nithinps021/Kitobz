@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 // components import
 import AddBook from "../components/AddBook";
 import Logout from "../components/Logout";
-import MyBooks from "../pages/MyBooks";
 
 // redux Imports
 import { connect } from "react-redux";
@@ -24,7 +23,6 @@ import clsx from "clsx";
 import { withStyles} from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -104,7 +102,6 @@ const useStyles = (theme) => ({
     },
     height:10,
     objectfit: "cover",
-    height: 27,
   },
 });
 
@@ -157,7 +154,7 @@ class NavBar extends Component {
                 >
                   <MenuIcon color="white" />
                 </IconButton>
-                <img src={kitobz} className={classes.kitobz} />
+                <img src={kitobz} alt="image" className={classes.kitobz} />
               </Toolbar>
             </Grid>
             <Grid item lg={6}></Grid>

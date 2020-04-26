@@ -17,13 +17,9 @@ import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
-import { Box, IconButton, Tooltip, CardContent } from "@material-ui/core";
+import { Box, IconButton, Tooltip} from "@material-ui/core";
 import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
+import TableCell from '@material-ui/core/TableCell'
 import TableRow from "@material-ui/core/TableRow";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -171,7 +167,7 @@ export class profile extends Component {
     } = this.props;
     let bname;
     for (let i = 0; i < Branch.length; i++) {
-      if (Branch[i].short == userDetails.branch) {
+      if (Branch[i].short === userDetails.branch) {
         bname = Branch[i].name;
         break;
       }

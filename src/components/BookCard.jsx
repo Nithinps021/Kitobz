@@ -85,13 +85,13 @@ class BookCard extends Component {
     } = bookinfo;
     let bname;
     for (let i = 0; i < Branch.length; i++) {
-      if (Branch[i].short == branch) {
+      if (Branch[i].short === branch) {
         bname = Branch[i].name;
         break;
       }
     }
     const handleWishlist = () => {
-      if(this.state.wish==false){
+      if(this.state.wish===false){
         this.setState({
           wish: true,
         });

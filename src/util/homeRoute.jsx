@@ -6,7 +6,7 @@ const homeRoute = ({ component: Componenet, authenticated, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      authenticated === true ? <Componenet {...props}/> : <Redirect to="/kitobz"/>
+      authenticated === true ? <Componenet {...props}/> : <Redirect to="/"/>
     }
   />
 );

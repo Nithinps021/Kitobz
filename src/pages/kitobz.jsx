@@ -72,8 +72,8 @@ export class kitobz extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <img src={background} className={classes.back} />
-        <img src={logo} className={classes.logo} />
+        <img src={background} className={classes.back} alt="imgage" />
+        <img src={logo} className={classes.logo} alt="img" />
         <div className={classes.login}>
           <Login/>
         </div>

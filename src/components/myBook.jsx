@@ -43,7 +43,7 @@ export class MyBook extends Component {
                 <Grid item md={3} ls={3} xs={4}>
                   <CardMedia image={details.imgURL} className={classes.img} />
                 </Grid>
-                <Grid item direction="column">
+                <Grid item >
                   <CardContent className={classes.cardContent}>
                     <Typography variant="h5">{details.bookname}</Typography>
                     <Typography variant="body1" className={classes.content}>

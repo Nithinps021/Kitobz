@@ -99,8 +99,8 @@ function App() {
         <Router>
           <Switch>
             <MuiThemeProvider theme={Theme}>
-              <AuthRoute exact path="/kitobz" component={Kitobz}></AuthRoute>
-              <HomeRoute exact path="/" component={Home}></HomeRoute>
+              <AuthRoute exact path="/" component={Kitobz}></AuthRoute>
+              <HomeRoute exact path="/home" component={Home}></HomeRoute>
               <HomeRoute exact path="/mybooks" component={MyBooks} />
               <HomeRoute exact path="/profile" component={Profile} />
             </MuiThemeProvider>

@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 const AuthRoute = ({component:Componenet,authenticated, ...rest }) =>(
     <Route
         {...rest}
-        render={(props) => authenticated === true ? <Redirect to ='/' /> : <Componenet {...props} />}
+        render={(props) => authenticated === true ? <Redirect to ='/home'/> : <Componenet {...props} />}
     />
 
 )
